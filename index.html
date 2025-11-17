@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, [Friend's Name]!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light gray background */
+            min-height: 100vh;
+        }
+
+        /* Specific style for the main birthday title */
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* CSS for the simple confetti effect (just visual, no animation library needed) */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: transparent;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            top: 0;
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+        }
+
+        .confetti-slow { animation-duration: 7s; }
+        .confetti-fast { animation-duration: 3s; }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Style for the photo zoom modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            margin: 15% auto; 
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 12px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center pt-12 pb-20">
+    <!-- Main Birthday Card Container -->
+    <div id="birthday-card" class="max-w-4xl w-full p-8 md:p-12 bg-white shadow-2xl rounded-2xl transition-all duration-500 hover:shadow-3xl transform hover:scale-[1.01] relative z-20">
+        
+        <!-- HEADER MESSAGE -->
+        <header class="text-center mb-10">
+            <h1 class="birthday-title text-5xl md:text-7xl font-bold text-pink-600 mb-4 animate-bounce-slow">
+                Happy Birthday, Koyel! 🥳
+            </h1>
+            <p class="text-xl text-gray-700">
+                May your day be filled with joy, cake, and amazing memories!
+            </p>
+        </header>
+
+        <hr class="border-pink-200 mb-10">
+
+        <!-- PHOTO GALLERY SECTION -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6 border-b-2 border-pink-400 pb-2">
+                cute and chotu bhai ✨
+            </h2>
+            
+            <div id="photo-gallery" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                
+                <!-- PHOTO 1 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel1.png')">
+                    <img src="koyel1.png" alt="Memory Photo 1" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+
+                <!-- PHOTO 2 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel2.png')">
+                    <img src="koyel2.png" alt="Memory Photo 2" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+
+                <!-- PHOTO 3 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel3.png')">
+                    <img src="koyel3.png" alt="Memory Photo 3" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+                
+                <!-- PHOTO 4 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel4.png')">
+                    <img src="koyel4.png" alt="Memory Photo 4" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+
+                <!-- PHOTO 5 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel5.png')">
+                    <img src="koyel5.png" alt="Memory Photo 5" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+                
+                <!-- PHOTO 6 -->
+                <!-- !!! REPLACE BOTH URLS BELOW WITH YOUR DIRECT IMAGE LINK !!! -->
+                <div class="relative group cursor-pointer" onclick="openModal('koyel6.png')">
+                    <img src="koyel6.png" alt="Memory Photo 6" class="w-full h-40 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-bold text-sm p-2 rounded-full bg-pink-500">Click to Zoom</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-sm mt-6 italic text-gray-500">
+                Click on any photo to see a larger version!
+            </p>
+        </section>
+
+        <hr class="border-pink-200 mb-10">
+        
+        <!-- PERSONAL MESSAGE SECTION -->
+        <section class="text-center">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">A Special Note Just For You</h2>
+            <div class="bg-pink-50 p-6 rounded-xl border border-pink-300 shadow-inner">
+                <p class="text-gray-700 leading-relaxed italic text-lg">
+                    "From the moment we met, you've brought so much light and laughter into my life. Every year, I'm grateful for your friendship, your crazy ideas, and your unwavering support. You are truly one of a kind, and I hope this next year brings you all the success and happiness you deserve. Let's celebrate soon! Love always, Saurav."
+                </p>
+            </div>
+            
+            <button id="confetti-button" class="mt-8 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 active:scale-95 text-xl">
+                Make a Wish! 🎂
+            </button>
+        </section>
+
+    </div>
+    
+    <!-- Photo Zoom Modal (Hidden by default) -->
+    <div id="image-modal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Set up the modal references
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+
+        // Function to open the modal and display the clicked image
+        function openModal(imageSrc) {
+            modal.style.display = "block";
+            // The imageSrc argument (which is the URL you passed in the onclick event)
+            // is set as the source of the large modal image.
+            modalImage.src = imageSrc;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks anywhere outside the image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // --- Confetti Effect Script ---
+        const colors = ['#FFD700', '#FF69B4', '#1E90FF', '#3CB371', '#FF4500']; // Gold, HotPink, DodgerBlue, MediumSeaGreen, OrangeRed
+        const confettiButton = document.getElementById('confetti-button');
+
+        confettiButton.addEventListener('click', function() {
+            // Disable button briefly to prevent spam
+            confettiButton.disabled = true;
+            setTimeout(() => { confettiButton.disabled = false; }, 2000);
+
+            // Generate 50 pieces of confetti
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+        });
+
+        function createConfetti() {
+            const c = document.createElement('div');
+            c.classList.add('confetti');
+
+            // Random position at the top
+            const startX = Math.random() * 100 + 'vw';
+            c.style.left = startX;
+
+            // Random color
+            c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random size and shape (square or circle)
+            const size = Math.random() * 10 + 5 + 'px';
+            c.style.width = size;
+            c.style.height = size;
+            if (Math.random() > 0.5) {
+                c.style.borderRadius = '0'; // Square
+            } else {
+                c.style.borderRadius = '50%'; // Circle
+            }
+
+            // Random rotation (for square pieces)
+            c.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            // Random duration for a natural look
+            c.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            document.body.appendChild(c);
+
+            // Remove the element after animation finishes
+            setTimeout(() => {
+                c.remove();
+            }, 7000);
+        }
+
+        // Launch confetti immediately on load
+        window.onload = function() {
+            for (let i = 0; i < 15; i++) {
+                createConfetti();
+            }
+        };
+
+    </script>
+</body>
+</html>
